@@ -1,0 +1,57 @@
+/* after-app/static/style.css */
+body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background-color: #f9f9fc;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+}
+.container {
+    max-width: 600px;
+    margin: auto;
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+h1 {
+    text-align: center;
+    color: #2c6fbb;
+    margin-bottom: 1.5rem;
+}
+label {
+    display: block;
+    margin: 12px 0 6px;
+    font-weight: 500;
+}
+input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+button {
+    width: 100%;
+    padding: 10px;
+    background: #2c6fbb;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 16px;
+}
+button:hover {
+    background: #1e5aa8;
+}
+.result {
+    margin-top: 20px;
+    padding: 15px;
+    background: #f0f8ff;
+    border-left: 4px solid #2c6fbb;
+    border-radius: 6px;
+}
+.hidden {
+    display: none;
+}

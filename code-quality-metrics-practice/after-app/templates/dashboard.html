@@ -1,0 +1,49 @@
+<!-- after-app/templates/dashboard.html -->
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard Kesehatan (After)</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>📊 Dashboard Kesehatan Mahasiswa</h1>
+        <form id="healthForm">
+            <label>Jam Olahraga/Hari (jam): <input type="number" step="0.1" id="exercise" required></label>
+            <label>Jam Tidur/Hari (jam): <input type="number" step="0.1" id="sleep" required></label>
+            <label>Konsumsi Air/Hari (liter): <input type="number" step="0.1" id="water" required></label>
+            <button type="submit">Evaluasi Kesehatan</button>
+        </form>
+        <div id="result" class="result hidden"></div>
+    </div>
+
+    <script>
+        document.getElementById('healthForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const data = {
+                exercise: parseFloat(document.getElementById('exercise').value),
+                sleep: parseFloat(document.getElementById('sleep').value),
+                water: parseFloat(document.getElementById('water').value)
+            };
+            const res = await fetch('/assess', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(data)
+            });
+            const result = await res.json();
+            const el = document.getElementById('result');
+            if (res.ok) {
+                el.innerHTML = `
+                    <h2>Hasil Evaluasi</h2>
+                    <p>Skor: <strong>${result.score}</strong></p>
+                    <p>Status: <strong>${result.status}</strong></p>
+                `;
+            } else {
+                el.innerHTML = `<p style="color:red;">⚠️ ${result.error || 'Input tidak valid'}</p>`;
+            }
+            el.classList.remove('hidden');
+        });
+    </script>
+</body>
+</html>
