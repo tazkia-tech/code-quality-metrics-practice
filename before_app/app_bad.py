@@ -1,4 +1,3 @@
-# before-app/app_bad.py
 from flask import Flask, request, jsonify
 
 app = Flask(__name__)

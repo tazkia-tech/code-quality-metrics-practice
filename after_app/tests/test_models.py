@@ -1,4 +1,3 @@
-# after-app/tests/test_models.py
 import pytest
 from app.models import assess_student_health
 
@@ -20,7 +19,7 @@ def test_perlu_perbaikan():
 def test_berisiko():
     res = assess_student_health(0, 4, 1)
     assert res["status"] == "Berisiko"
-    assert res["score"] == 0.27  # (0 + 0.5 + 0.33)*0.4/0.4+... ≈ 0.27
+    assert res["score"] == 0.27  
 
 def test_invalid_negative():
     with pytest.raises(ValueError):
