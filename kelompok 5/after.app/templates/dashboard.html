@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <title>Dashboard Gaya Hidup Anak Kos</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Evaluasi Gaya Hidup Anak Kos</h1>
+
+    <section class="card">
+      <h2>Evaluasi Lifestyle</h2>
+      <form id="lifestyleForm">
+        <label>nongkrong/minggu:
+          <input type="number" step="0.1" name="nongkrong" required>
+        </label>
+        <label>Pengeluaran hiburan :
+          <input type="number" step="1" name="hiburan" required>
+        </label>
+        <label>Jam belajar/minggu:
+          <input type="number" step="0.1" name="belajar" required>
+        </label>
+        <label>jam kerja/minggu:
+          <input type="number" step="0.1" name="kerja" required>
+        </label>
+        <button type="submit">Evaluasi Lifestyle</button>
+      </form>
+
+      <div id="lifestyleResult" class="result"></div>
+    </section>
+
+<script>
+document.getElementById('lifestyleForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const form = e.target;
+  const data = {
+    nongkrong: parseFloat(form.nongkrong.value),
+    hiburan: parseFloat(form.hiburan.value),
+    belajar: parseFloat(form.belajar.value),
+    kerja: parseFloat(form.kerja.value)
+  };
+  const res = await fetch('/assess-lifestyle', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(data)
+  });
+  const json = await res.json();
+  const el = document.getElementById('lifestyleResult');
+  if (res.ok) {
+    el.innerHTML = `<p>Score: <strong>${json.score}</strong></p><p>Status: <strong>${json.status}</strong></p>`;
+  } else {
+    el.innerHTML = `<p class="err">Error: ${json.error} ${json.detail ? '('+json.detail+')' : ''}</p>`;
+  }
+});
+
+</script>
+</body>
+</html>
