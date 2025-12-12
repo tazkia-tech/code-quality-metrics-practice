@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mood Temen Analyzer</title>
+</head>
+<body>
+    <h1>Analisis Mood Temen</h1>
+
+    <form id="form">
+        <input id="reply" placeholder="seberapa sering menjawab">
+        <input id="emoji" placeholder="penggunaan emoji">
+        <input id="slow" placeholder="waktu respon pesan">
+        <button>Cek</button>
+    </form>
+
+    <pre id="result"></pre>
+
+<script>
+document.getElementById("form").addEventListener("submit", async (e)=>{
+    e.preventDefault();
+    const data = {
+        reply_freq: Number(reply.value),
+        emoji_count: Number(emoji.value),
+        response_time: Number(slow.value),
+    };
+    const res = await fetch("/mood",{
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify(data)
+    });
+    document.getElementById("result").innerHTML = JSON.stringify(await res.json(),null,2);
+});
+</script>
+</body>
+</html>
