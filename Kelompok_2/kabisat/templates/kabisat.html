@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pengecek Tahun Kabisat (Flask & Tailwind)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex justify-center items-center min-h-screen">
+
+    <div id="container" class="bg-white p-8 rounded-xl shadow-2xl text-center w-full max-w-sm">
+        <h1 class="text-3xl font-bold text-gray-800 mb-4">🗓️ Pengecek Tahun Kabisat</h1>
+        
+        <p class="text-gray-600 mb-4">Masukkan tahun (e.g., 2024):</p>
+        
+        <form method="POST" action="/">
+            <input 
+                type="number" 
+                id="inputTahun" 
+                name="inputTahun" 
+                placeholder="Masukkan angka tahun"
+                class="p-3 border border-gray-300 rounded-lg w-full mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                value="{{ tahun if tahun else '' }}" 
+                required
+            >
+            
+            <button 
+                type="submit"
+                class="bg-blue-600 text-white py-2 px-4 rounded-lg w-full font-semibold hover:bg-blue-700 transition duration-300 shadow-md"
+            >
+                Cek Tahun
+            </button>
+        </form>
+        
+        {% if hasil %}
+            <div 
+                id="hasil" 
+                class="mt-6 text-lg font-bold p-3 rounded-lg {{ hasil_class }}"
+            >
+                {{ hasil | safe }}
+            </div>
+        {% endif %}
+
+    </div>
+    
+</body>
+</html>
