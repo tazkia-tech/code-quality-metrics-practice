@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cek Bilangan Prima</title>
+</head>
+<body>
+    <h1>Cek Bilangan Prima</h1>
+
+    <form method="POST">
+        <label>Masukkan angka:</label>
+        <input type="number" name="angka" required>
+        <button type="submit">Cek</button>
+    </form>
+
+    {% if hasil %}
+        <h3>Hasil:</h3>
+        <p>{{ hasil }}</p>
+    {% endif %}
+</body>
+</html>
