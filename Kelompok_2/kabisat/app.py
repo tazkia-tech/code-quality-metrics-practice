@@ -28,11 +28,11 @@ def index():
             
             # Jalankan logika Python
             if is_leap(tahun):
-                hasil = f"Tahun {tahun} adalah **TAHUN KABISAT!** 🎉"
+                hasil = f"Tahun {tahun} adalah TAHUN KABISAT! 🎉"
                 # Kelas Tailwind untuk success
                 hasil_class = "bg-green-200 text-green-800"
             else:
-                hasil = f"Tahun {tahun} **BUKAN** tahun kabisat. ❌"
+                hasil = f"Tahun {tahun} BUKAN tahun kabisat. ❌"
                 # Kelas Tailwind untuk warning/failure
                 hasil_class = "bg-yellow-200 text-yellow-800"
 
